@@ -100,10 +100,17 @@ void game() {
         is_win = is_winner();
         if (is_win) {
             cout << player_now << " won. Congratulations!";
+            show_grid(grid);
             break;
         }
 
         c += 1;
+
+        if (c == 10) {
+            cout << "It's a draw!";
+            show_grid(grid);
+            break;
+        }
         
     }
 
