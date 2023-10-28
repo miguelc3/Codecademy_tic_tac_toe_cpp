@@ -58,7 +58,22 @@ bool is_winner() {
 
 }
 
-void game() {
+
+int nr_games;
+void choose_game_mode () {
+
+    
+    cout << "What game mode do you want to play?\n";
+    cout << " 1 - Sudden death; \n";
+    cout << " 3 - Beste of 3; \n";
+    cout << " 5 - Beste of 5; \n";
+
+    cin >> nr_games;
+
+}
+
+
+string game() {
 
     grid[0] = " ";
     grid[1] = " ";
@@ -101,7 +116,7 @@ void game() {
         if (is_win) {
             cout << player_now << " won. Congratulations!";
             show_grid(grid);
-            break;
+            return player_now;
         }
 
         c += 1;
@@ -109,11 +124,52 @@ void game() {
         if (c == 10) {
             cout << "It's a draw!";
             show_grid(grid);
-            break;
+            return "draw";
         }
         
     }
 
     
+}
+
+void play () {
+
+    int wins_player_1 = 0;
+    int wins_player_2 = 0;
+    int draws = 0;
+    string res;
+
+    for (int i = 1; i <= nr_games; i++) {
+        res = game();
+        if (res == "Player 1") {
+            wins_player_1 += 1;
+        } else if (res == "Player 2") {
+            wins_player_2 += 1;
+        } else {
+            draws += 1;
+        }
+
+        // Displaying current results
+        cout << " ======  CURRENT RESULT ======\n";
+        cout << "Game " << i << " of " << nr_games << ".\n";
+        cout << "Player 1: " << wins_player_1 << "\n";
+        cout << "Player 2: " << wins_player_2 << "\n";
+        cout << "Draws: " << draws << "\n";
+    }
+
+    // Displaying final results
+    cout << " ======  FINAL RESULT ======\n";        
+    cout << "Player 1: " << wins_player_1 << "\n";
+    cout << "Player 2: " << wins_player_2 << "\n";
+    cout << "Draws: " << draws << "\n";
+
+    if (wins_player_1 > wins_player_2) {
+        cout << "Player 1 is the champion! Congratulations!";
+    } else if (wins_player_1 < wins_player_2) {
+        cout << "Player 2 is the champion! Congratulations!"; 
+    } else {
+        cout << "We have a draw ... you're both very good!";
+    }
+
 }
 

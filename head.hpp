@@ -1,4 +1,8 @@
+#include <string>
+using namespace std;
 
 void greet();
 void show_grid();
-void game();
+string game();
+void play();
+void choose_game_mode();

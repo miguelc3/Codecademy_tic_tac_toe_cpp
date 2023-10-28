@@ -4,5 +4,6 @@ using namespace std;
 
 int main() {
   greet();
-  game();
+  choose_game_mode();
+  play();
 }
